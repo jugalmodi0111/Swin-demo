@@ -4,7 +4,8 @@ Welcome. This guide is structured to provide a thorough introduction to the repo
 
 Upon completion, you will possess a solid grasp of the project's objectives and execution, applicable to broader topics in convolutional neural networks, attention mechanisms, and transfer learning. Visual representations, including Mermaid diagrams and Chart.js charts, are integrated to clarify processes and outcomes. To deepen comprehension, subsequent sections incorporate expanded technical details drawn from the repository's implementation, including code insights and architectural explanations where relevant.
 
-https://github.com/user-attachments/assets/98e2d9ed-ac1e-4233-b965-a9dd3ad71750
+![Alt text](https://github.com/user-attachments/assets/98e2d9ed-ac1e-4233-b965-a9dd3ad71750)
+
 
 ## Section 1: What is GitHub, and Why Does This Repo Matter?
 
