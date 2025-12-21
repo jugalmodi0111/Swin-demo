@@ -447,20 +447,6 @@ Input to output flow.
 Layered flowchart for Swin stages.
 
 ```mermaid
-flowchart TB
-    L1["Stage 1: Local Patches"]
-    L2["Stage 2: Merged Features"]
-    L3["Stage 3: Global Context"]
-    L1 --> L2
-    L2 --> L3
-    L3 --> O[Classification Head]
-    style O fill:#fff3e0
-```
-
-Hierarchical abstraction.
-
-
-```mermaid
 flowchart TD
     subgraph Input ["Input Image"]
         II[Input Image]
@@ -469,7 +455,7 @@ flowchart TD
         direction TB
         PP[Patch Partition]
         LE[Linear Embedding]
-        STB1[Swin Transformer Blocks<br/>W-MSA<br/>(Window-based Multi-head Self-Attention)]
+        STB1["Swin Transformer Blocks<br/>W-MSA<br/>Window-based Multi-head Self-Attention"]
         PP --> LE
         LE --> STB1
     end
@@ -479,7 +465,7 @@ flowchart TD
         direction TB
         STB2a[W-MSA]
         STB2b[W-MSA]
-        STB2c[SW-MSA<br/>(Shifted Window<br/>Multi-head Self-Attention)]
+        STB2c["SW-MSA<br/>Shifted Window<br/>Multi-head Self-Attention"]
         STB2a --> STB2b
         STB2b --> STB2c
     end
@@ -505,8 +491,8 @@ flowchart TD
     end
     subgraph SWM ["Shifted Window Mechanism"]
         direction TB
-        W[W-MSA<br/>(regular 7x7 window<br/>partitioning)]
-        SW[SW-MSA<br/>(7x7 window shifted<br/>by (3,3))]
+        W["W-MSA<br/>regular 7x7 window<br/>partitioning"]
+        SW["SW-MSA<br/>7x7 window shifted<br/>by (3,3)"]
         W --> SW
     end
     II --> PP
@@ -524,5 +510,7 @@ flowchart TD
     classDef mechanism fill:#fff3e0
     class SWM mechanism
 ```
+
+
 
 This concludes the guide. Proceed with cloning and execution for empirical validation. Inquiries are welcome; consider forking for modifications.
