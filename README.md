@@ -459,4 +459,70 @@ flowchart TB
 
 Hierarchical abstraction.
 
+
+```mermaid
+flowchart TD
+    subgraph Input ["Input Image"]
+        II[Input Image]
+    end
+    subgraph S1 ["Stage 1"]
+        direction TB
+        PP[Patch Partition]
+        LE[Linear Embedding]
+        STB1[Swin Transformer Blocks<br/>W-MSA<br/>(Window-based Multi-head Self-Attention)]
+        PP --> LE
+        LE --> STB1
+    end
+    subgraph PM1 ["Patch Merging<br/>(2x2 patches merged,<br/>spatial dim /2, channels x2)"]
+    end
+    subgraph S2 ["Stage 2"]
+        direction TB
+        STB2a[W-MSA]
+        STB2b[W-MSA]
+        STB2c[SW-MSA<br/>(Shifted Window<br/>Multi-head Self-Attention)]
+        STB2a --> STB2b
+        STB2b --> STB2c
+    end
+    subgraph PM2 ["Patch Merging"]
+    end
+    subgraph S3 ["Stage 3"]
+        direction TB
+        STB3a[W-MSA]
+        STB3b[W-MSA]
+        STB3c[SW-MSA]
+        STB3a --> STB3b
+        STB3b --> STB3c
+    end
+    subgraph PM3 ["Final Patch Merging"]
+    end
+    subgraph S4 ["Stage 4"]
+        direction TB
+        STB4[Swin Transformer Blocks]
+        LN[Layer Norm]
+        FOH[Final Output Head]
+        STB4 --> LN
+        LN --> FOH
+    end
+    subgraph SWM ["Shifted Window Mechanism"]
+        direction TB
+        W[W-MSA<br/>(regular 7x7 window<br/>partitioning)]
+        SW[SW-MSA<br/>(7x7 window shifted<br/>by (3,3))]
+        W --> SW
+    end
+    II --> PP
+    S1 --> PM1
+    PM1 --> S2
+    S2 --> PM2
+    PM2 --> S3
+    S3 --> PM3
+    PM3 --> S4
+    STB1 -.-> W
+    STB2c -.-> SW
+    STB3c -.-> SW
+    classDef stage fill:#e1f5fe
+    class S1,S2,S3,S4 stage
+    classDef mechanism fill:#fff3e0
+    class SWM mechanism
+```
+
 This concludes the guide. Proceed with cloning and execution for empirical validation. Inquiries are welcome; consider forking for modifications.
